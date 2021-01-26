@@ -17,3 +17,6 @@ list-style: none;
   #validation-input.invalid {
     border-color: #f44336;
   }
+  .box {
+      border: solid 2px;
+  }
