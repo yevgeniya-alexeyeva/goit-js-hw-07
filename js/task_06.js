@@ -5,4 +5,9 @@ const handleInputValidation = () => {
     ? inputRef.classList.add("valid")
     : inputRef.classList.add("invalid");
 };
+const clearClasses = () => {
+  inputRef.classList.remove("valid");
+  inputRef.classList.remove("invalid");
+};
 inputRef.addEventListener("blur", handleInputValidation);
+inputRef.addEventListener("input", clearClasses);
