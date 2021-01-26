@@ -11,24 +11,26 @@ const randomColor = () => {
 };
 const addDivs = (amount) => {
   amount = inputRef.value;
-  console.log(amount);
   const boxes = [];
 
-  for (let i = 0; i <= amount; i += 1) {
+  for (let i = 0; i < amount; i += 1) {
     const box = document.createElement("div");
-    console.log(box);
     box.classList.add("box");
     const size = 30 + 10 * i;
-    console.log(size);
     box.style.width = size + "px";
     box.style.height = size + "px";
     box.style.backgroundColor = randomColor();
 
     boxes.push(box);
   }
-  console.log(boxes);
+
   boxesRef.append(...boxes);
+};
+const destroyDivs = () => {
+  Array.from(boxesRef.children).forEach((element) => {
+    element.remove();
+  });
 };
 
 btnCreateDivsRef.addEventListener("click", addDivs);
-// btnDestroyDivsRef.addEventListener('click', destroyDivs);
+btnDestroyDivsRef.addEventListener("click", destroyDivs);
