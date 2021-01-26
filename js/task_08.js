@@ -5,14 +5,9 @@ const btnDestroyDivsRef = document.querySelector(
 );
 const boxesRef = document.querySelector("#boxes");
 const randomColor = () => {
- let col = Math.round(255.0 * Math.random());
- let r = col.toString(16);
-  col = Math.round(255.0 * Math.random());
-  let g = col.toString(16);
-  col = Math.round(255.0 * Math.random());
-  let d = col.toString(16);
-  col = r + g + d;
-  return col;
+  return (
+    "#" + (Math.random().toString(16) + "000000").substring(2, 8).toUpperCase()
+  );
 };
 const addDivs = (amount) => {
   amount = inputRef.value;
