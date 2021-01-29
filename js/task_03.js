@@ -18,16 +18,10 @@ const images = [
 
 const galeryRef = document.querySelector("#gallery");
 
-const galeryItems = images.reduce((acc, itemAttributes) => {
-  const item = document.createElement("li");
-  item.insertAdjacentHTML(
+const galeryItems = images.forEach((itemAttributes) => {
+  galeryRef.insertAdjacentHTML(
     "beforeend",
-    `<img src="${itemAttributes.url}" alt="${itemAttributes.alt}" width="200" height="100"/>`
+    `<li class="galary__list-item"><img src="${itemAttributes.url}" alt="${itemAttributes.alt}" width="200" height="100"/></li>`
   );
-  item.classList.add("galary__list-item");
-  acc.push(item);
-  return acc;
-}, []);
-
-galeryRef.append(...galeryItems);
+});
 galeryRef.classList.add("galery-list");
