@@ -18,10 +18,9 @@ const images = [
 
 const galeryRef = document.querySelector("#gallery");
 
-const galeryItems = images.forEach((itemAttributes) => {
-  galeryRef.insertAdjacentHTML(
-    "beforeend",
+const galeryItems = images.map(
+  (itemAttributes) =>
     `<li class="galary__list-item"><img src="${itemAttributes.url}" alt="${itemAttributes.alt}" width="200" height="100"/></li>`
-  );
-});
+);
+galeryRef.insertAdjacentHTML("beforeend", galeryItems);
 galeryRef.classList.add("galery-list");
