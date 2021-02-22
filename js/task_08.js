@@ -1,36 +1,37 @@
-const inputRef = document.querySelector("#div-number-creator");
-const btnCreateDivsRef = document.querySelector('button[data-action="render"]');
-const btnDestroyDivsRef = document.querySelector(
-  'button[data-action="destroy"]'
-);
-const boxesRef = document.querySelector("#boxes");
+const ref = {
+  input: document.querySelector("#div-number-creator"),
+  btnCreateDivs: document.querySelector('button[data-action="render"]'),
+  btnDestroyDivs: document.querySelector('button[data-action="destroy"]'),
+  boxes: document.querySelector("#boxes"),
+};
+
 const randomColor = () => {
   return (
     "#" + (Math.random().toString(16) + "000000").substring(2, 8).toUpperCase()
   );
 };
+
+let size = 30;
 const addDivs = (amount) => {
-  amount = inputRef.value;
-  const boxes = [];
+  amount = ref.input.value;
+  let boxes = [...new Array(+amount).keys()];
+  const markup = boxes
+    .map(() => {
+      const box = `<div class="box" style="width:${size}px;height:${size}px;background:${randomColor()}"></div>`;
+      size += 10;
+      return box;
+    })
+    .join("");
 
-  for (let i = 0; i < amount; i += 1) {
-    const box = document.createElement("div");
-    box.classList.add("box");
-    const size = 30 + 10 * i;
-    box.style.width = size + "px";
-    box.style.height = size + "px";
-    box.style.backgroundColor = randomColor();
-
-    boxes.push(box);
-  }
-
-  boxesRef.append(...boxes);
+  console.log(markup);
+  ref.boxes.insertAdjacentHTML("beforeend", markup);
 };
+
 const destroyDivs = () => {
-  Array.from(boxesRef.children).forEach((element) => {
+  Array.from(ref.boxes.children).forEach((element) => {
     element.remove();
   });
 };
 
-btnCreateDivsRef.addEventListener("click", addDivs);
-btnDestroyDivsRef.addEventListener("click", destroyDivs);
+ref.btnCreateDivs.addEventListener("click", addDivs);
+ref.btnDestroyDivs.addEventListener("click", destroyDivs);
